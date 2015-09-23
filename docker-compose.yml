@@ -4,6 +4,8 @@ celery:
     - .:/home/code
   links:
     - rabbitmq
+  ports:
+    - "6900:6900"
 
 rabbitmq:
   image: rabbitmq:management
