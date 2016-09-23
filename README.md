@@ -10,6 +10,20 @@ this test in order to see what problems can occur.
 Make sure you never use `--without-hearbeat` or `--without-gossip` when running a worker, as it will
 make batch workers never process anything.
 
+Update 2016-09-23: Tried again with Celery 3.1.23 and this does not seem to be a problem anymore.
+Could be a kombu update.
+
+## Flag tests
+
+`--without-heartbeat` - Batches still work
+
+`--without-mingle` - Batches still work
+
+`--without-gossip` - Batches still work
+
+`--without-heartbeat` and `--without-gossip` - Batches still work
+
+`--without-heartbeat`, `--without-gossip` and `--without-mingle` - Batches still work
 
 ## Lost messages
 
@@ -60,3 +74,17 @@ Traceback (most recent call last):
     raise Exception("BOOM")
 Exception: BOOM
 ```
+
+
+## celeryev queues
+Celery creates celeryev queues by default as part of it's system.
+
+Setting `CELERY_SEND_EVENTS = False` and/or `CELERY_EVENT_QUEUE_EXPIRES = 60` has no visible effect.
+
+But using the `--without-gossip` it will prevent the creation of celeryev queues and Batches still work.
+
+
+## pidbox queue
+Celery creates pidbox queues by default as part of it's system.
+
+You disable it by setting `CELERY_ENABLE_REMOTE_CONTROL = False` in your settings.

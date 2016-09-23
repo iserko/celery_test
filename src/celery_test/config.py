@@ -10,6 +10,7 @@ CELERY_IMPORTS = (
     'celery_test.tasks',
 )
 CELERY_ACKS_LATE = True
+CELERY_ENABLE_REMOTE_CONTROL = False
 
 CELERY_RDB_HOST = os.environ.get('CELERY_RDB_HOST') or '0.0.0.0'
 CELERY_RDB_PORT = int(os.environ.get('CELERY_RDB_PORT') or '6900')
