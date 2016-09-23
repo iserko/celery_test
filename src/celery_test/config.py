@@ -26,7 +26,17 @@ CELERY_ROUTE_MAP = {
         'tasks': [
             'celery_test.tasks.batch_exceptions',
         ]
-    }
+    },
+    'celery.batch_exceptions_retries': {
+        'tasks': [
+            'celery_test.tasks.batch_exceptions_retries',
+        ]
+    },
+    'celery.batch_timeout': {
+        'tasks': [
+            'celery_test.tasks.batch_timeout',
+        ]
+    },
 }
 
 CELERY_DEFAULT_QUEUE = 'default'
